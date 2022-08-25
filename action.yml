@@ -1,0 +1,21 @@
+name: 'setup-netrc'
+description: 'Setup .netrc file'
+author: 'Conventional Actions'
+inputs:
+  machine:
+    description: 'The remote machine name'
+    required: true
+  username:
+    description: 'The remote username'
+    required: false
+    default: ''
+  password:
+    description: 'The remote password'
+    required: false
+    default: ''
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  color: "purple"
+  icon: "radio"
