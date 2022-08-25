@@ -2,24 +2,16 @@ import * as process from 'process'
 import * as cp from 'child_process'
 import * as path from 'path'
 import {test} from '@jest/globals'
-import os from 'os'
-import * as fs from 'fs'
 
 // shows how the runner will run a javascript action with env / stdout protocol
 test('test runs', () => {
-  process.env['INPUT_MACHINE'] = 'localhost'
-  process.env['INPUT_USERNAME'] = 'user'
-  process.env['INPUT_PASSWORD'] = 'pass'
-
+  process.env['RUNNER_TEMP'] = '/tmp'
+  process.env['RUNNER_TOOL_CACHE'] = '/tmp'
   const np = process.execPath
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
   const options: cp.ExecFileSyncOptions = {
     env: process.env
   }
 
-  const netrc = path.resolve(os.homedir(), '.netrc')
   cp.execFileSync(np, [ip], options)
-
-  const contents = fs.readFileSync(netrc)
-  console.log(contents.toString('utf-8'))
 })

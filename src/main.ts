@@ -17,21 +17,30 @@ async function run(): Promise<void> {
         return
     }
 
-    const scanVersion = core.getInput('scan-version')
+    const scanVersion = core.getInput('scan-version') || 'latest'
+    core.debug(`downloading ${scanVersion} version`)
+
+    const pluginPath = `${os.homedir()}/.docker/cli-plugins`
+    core.debug(`plugin path ${pluginPath}`)
+    await io.mkdirP(pluginPath)
+
     const downloadPath = await tc.downloadTool(
-      `https://github.com/docker/scan-cli-plugin/releases/download/${scanVersion}/docker-scan_linux_${osArch}`
+      scanVersion === 'latest'
+        ? `https://github.com/docker/scan-cli-plugin/releases/latest/download/docker-scan_linux_${osArch}`
+        : `https://github.com/docker/scan-cli-plugin/releases/download/${scanVersion}/docker-scan_linux_${osArch}`,
+      `${pluginPath}/docker-scan`
     )
+    core.debug(`downloaded to ${downloadPath}`)
+
     const toolPath = await tc.cacheDir(
-      downloadPath,
+      pluginPath,
       'docker-scan',
       scanVersion,
       os.arch()
     )
-    const pluginPath = `${os.homedir()}/.docker/cli-plugins`
+    core.debug(`tool path ${toolPath}`)
 
-    await io.mkdirP(pluginPath)
-    await io.cp(toolPath, `${pluginPath}/docker-scan`)
-
+    // await io.cp(toolPath, `${pluginPath}/docker-scan`)
     await exec.exec('chmod', ['+x', `${pluginPath}/docker-scan`])
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)

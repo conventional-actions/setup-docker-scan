@@ -1,21 +1,14 @@
-name: 'setup-netrc'
-description: 'Setup .netrc file'
+name: 'setup-docker-scan'
+description: 'Setup docker scan'
 author: 'Conventional Actions'
 inputs:
-  machine:
-    description: 'The remote machine name'
-    required: true
-  username:
-    description: 'The remote username'
+  scan-version:
     required: false
-    default: ''
-  password:
-    description: 'The remote password'
-    required: false
-    default: ''
+    description: 'version of docker scan to use'
+    default: latest
 runs:
   using: 'node16'
   main: 'dist/index.js'
 branding:
-  color: "purple"
-  icon: "radio"
+  icon: zoom-in
+  color: purple
