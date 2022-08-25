@@ -33,9 +33,9 @@ async function run(): Promise<void> {
     // await io.cp(toolPath, `${pluginPath}/docker-scan`)
     //
     // await exec.exec('chmod', ['+x', `${pluginPath}/docker-scan`])
-    await exec.exec('apt', ['update'])
+    await exec.exec('sudo', ['apt', 'update'])
 
-    await exec.exec('apt', ['install', 'docker-scan-plugin'])
+    await exec.exec('sudo', ['apt', 'install', 'docker-scan-plugin'])
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
