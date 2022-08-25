@@ -12,9 +12,9 @@ To use the GitHub Action, add the following to your job:
 
 ### Inputs
 
-| Name      | Default  | Description                           |
-|-----------|----------|---------------------------------------|
-| `version` | `latest` | the version of docker scan to install |
+| Name           | Default  | Description                           |
+|----------------|----------|---------------------------------------|
+| `scan-version` | `latest` | the version of docker scan to install |
 
 ### Outputs
 
