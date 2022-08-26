@@ -11,7 +11,7 @@ inputs:
     description: 'use the authentication token to log into the third-party scanning provider'
 runs:
   using: 'node16'
-  post: 'dist/setup/index.js'
+  pre: 'dist/setup/index.js'
   main: 'dist/main/index.js'
 branding:
   icon: zoom-in
