@@ -3,15 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "description": "GitHub Action to setup docker-scan",
-  "main": "lib/main.js",
+  "main": "dist/main/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "ncc build --source-map --license licenses.txt -o dist/setup src/setup.ts && ncc build --source-map --license licenses.txt -o dist/main src/main.ts",
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
-    "package": "ncc build --source-map --license licenses.txt",
     "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run build && npm run format && npm run lint && npm test"
   },
   "repository": {
     "type": "git",
