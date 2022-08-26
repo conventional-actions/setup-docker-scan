@@ -6572,6 +6572,13 @@ async function run() {
                 osArch = os_1.default.arch();
                 return;
         }
+        const token = core.getInput('token') ||
+            process.env['SNYK_TOKEN'] ||
+            process.env['SNYK_AUTH_TOKEN'] ||
+            '';
+        if (token) {
+            core.setSecret(token);
+        }
         const scanVersion = core.getInput('scan-version') || 'latest';
         core.debug(`downloading ${scanVersion} version`);
         const pluginPath = `${os_1.default.homedir()}/.docker/cli-plugins`;

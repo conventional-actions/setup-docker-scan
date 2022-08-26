@@ -17,6 +17,15 @@ async function run(): Promise<void> {
         return
     }
 
+    const token =
+      core.getInput('token') ||
+      process.env['SNYK_TOKEN'] ||
+      process.env['SNYK_AUTH_TOKEN'] ||
+      ''
+    if (token) {
+      core.setSecret(token)
+    }
+
     const scanVersion = core.getInput('scan-version') || 'latest'
     core.debug(`downloading ${scanVersion} version`)
 

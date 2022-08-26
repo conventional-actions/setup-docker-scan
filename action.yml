@@ -6,6 +6,9 @@ inputs:
     required: false
     description: 'version of docker scan to use'
     default: latest
+  token:
+    required: false
+    description: 'use the authentication token to log into the third-party scanning provider'
 runs:
   using: 'node16'
   post: 'dist/setup/index.js'
