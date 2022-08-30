@@ -11,7 +11,7 @@ async function run(): Promise<void> {
       'scan',
       '--accept-license',
       '--login',
-      '--snyk_token',
+      '--token',
       config.snyk_token
     ])
   } catch (error) {
