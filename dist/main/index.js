@@ -4042,7 +4042,7 @@ async function run() {
             'scan',
             '--accept-license',
             '--login',
-            '--snyk_token',
+            '--token',
             config.snyk_token
         ]);
     }
