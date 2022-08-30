@@ -11,12 +11,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: npm install
-      - run: npm run all
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          scope: conventional-actions
+          registry-url: https://npm.pkg.github.com/
+          always-auth: true
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run all
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./
-      - run: docker scan
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test
+        uses: ./
+      - name: Run scan
+        run: docker scan
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  packages: read

@@ -8,7 +8,7 @@ test('test runs', () => {
   process.env['RUNNER_TEMP'] = '/tmp'
   process.env['RUNNER_TOOL_CACHE'] = '/tmp'
   const np = process.execPath
-  const ip = path.join(__dirname, '..', 'lib', 'main.js')
+  const ip = path.join(__dirname, '..', 'dist', 'main', 'index.js')
   const options: cp.ExecFileSyncOptions = {
     env: process.env
   }
