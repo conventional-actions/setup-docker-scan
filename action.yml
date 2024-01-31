@@ -10,7 +10,7 @@ inputs:
     required: false
     description: 'use the authentication token to log into the third-party scanning provider'
 runs:
-  using: 'node16'
+  using: 'node20'
   pre: 'dist/setup/index.js'
   main: 'dist/main/index.js'
 branding:
