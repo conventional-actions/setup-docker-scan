@@ -10,9 +10,9 @@ inputs:
     required: false
     description: 'use the authentication token to log into the third-party scanning provider'
 runs:
-  using: 'node20'
-  pre: 'dist/setup/index.js'
-  main: 'dist/main/index.js'
+  using: 'node24'
+  pre: 'dist/setup/index.cjs'
+  main: 'dist/main/index.cjs'
 branding:
   icon: zoom-in
   color: purple
